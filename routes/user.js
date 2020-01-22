@@ -88,9 +88,9 @@ exports.profile = function(req, res){
    }
 
    var sql="SELECT * FROM `users` WHERE `id`='"+userId+"'";        
-   db.query(sql, function(err, result){ 
+   db.query(sql, function(err, results){ 
       if(results.length){
-      res.render('profile.ejs',{data:result});
+      res.render('profile.ejs',{data:results});
       }
       else{
          res.render('profile.ejs',{data:null});
