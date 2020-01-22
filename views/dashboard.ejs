@@ -1,0 +1,29 @@
+<html lang="en">
+
+   <%- include header %>
+   <!-- Main component for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        <h1>Status</h1>
+        <table class="table table-user-information">
+            <tbody>
+              <tr style="background: white; color:black; font-weight:700; font-size: 1.5rem;">
+							
+								<th class='table-center' style='position: sticky;top: 0;background: white;text-align:center'>Photo_id</th>
+								<th class='table-center' style='position: sticky;top: 0;background: white;text-align:center'>Filename</th>
+								<th class='table-center' style='position: sticky;top: 0;background: white;text-align:center'>Timestamp</th>
+								<th class='table-center' style='position: sticky;top: 0;background: white;text-align:center'>Status</th>
+								<th class='table-center' style='position: sticky;top: 0;background: white;text-align:center'>Download</th>
+              </tr>
+              <tr style="background: white; color:black; font-weight:70; font-size: 1.5rem;">
+								<th class='table-center' style='position: sticky;top: 0;background: white;text-align:center'><%=data[0].Photo_id%></th>
+								<th class='table-center' style='position: sticky;top: 0;background: white;text-align:center'><%=data[0].Photo_id%></th>
+								<th class='table-center' style='position: sticky;top: 0;background: white;text-align:center'><%=data[0].time%></th>
+								<th class='table-center' style='position: sticky;top: 0;background: white;text-align:center'><%=data[0].resut%></th>
+								<th class='table-center' style='position: sticky;top: 0;background: white;text-align:center'><a href="<%=data[0].output_path%>">Download</a></th>
+              </tr>
+
+            </tbody>
+          </table>
+        
+      </div>
+    <%- include footer %>
