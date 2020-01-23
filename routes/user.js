@@ -71,8 +71,7 @@ exports.dashboard = function(req, res, next){
    db.query(sql, function(err, result){
       res.render('dashboard.ejs', {data:result});    
    });
-
-          
+       
 };
 //------------------------------------logout functionality----------------------------------------------
 exports.logout=function(req,res){
