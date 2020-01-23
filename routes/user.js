@@ -54,7 +54,8 @@ exports.login = function(req, res){
            
 };
 //-----------------------------------------------dashboard page functionality----------------------------------------------
-           
+  
+
 exports.dashboard = function(req, res, next){
            
    var user =  req.session.user,
@@ -64,15 +65,22 @@ exports.dashboard = function(req, res, next){
       res.redirect("/login");
       return;
    }
-
-   var sql="SELECT * FROM `Image` WHERE `user_id`='"+userId+"'";
+   
+   else {
+      var sql="SELECT * FROM `Image` WHERE `user_id`='"+userId+"'";
    
 
-   db.query(sql, function(err, result){
-      res.render('dashboard.ejs', {data:result});    
-   });
+      db.query(sql, function(err, result){
+         res.render('dashboard.ejs', {data:result});    
+      });
+   }
+   
        
 };
+
+
+
+
 //------------------------------------logout functionality----------------------------------------------
 exports.logout=function(req,res){
    req.session.destroy(function(err) {
@@ -105,11 +113,48 @@ exports.editprofile=function(req,res){
       res.redirect("/login");
       return;
    }
+   if(req.method == "POST"){
+         var post  = req.body;
+         var userId = req.session.userId;;
+         var time =Date.now();
+         var output ="-";
+         var sql="SELECT * FROM `users` WHERE `id`='"+userId+"'";
+      
+        if (!req.files)
+               return res.status(400).send('No files were uploaded.');
+      
+         var file = req.files.uploaded_image;
+         var img_name=file.name;
+      
+            if(file.mimetype == "image/jpeg" ||file.mimetype == "image/png"||file.mimetype == "image/gif" ){
+                                    
+                 file.mv('public/images/upload_images/'+file.name, function(err) {
+                                
+                    if (err)
+      
+                      return res.status(500).send(err);
+                        var sql1 = "INSERT INTO `Image`(`time`,`input_path`,`user_id`, `output_path` ,`result`) VALUES ('" + time+ "','" +'public/images/upload_images/'+file.name  + "','" + userId + "','" + output + "','" + 'processing' + "')";
+      
+                         var query = db.query(sql1, function(err, result) {
+                           db.query(sql, function(err, result){
+                              res.render('dashboard.ejs', {data:result});    
+                           });
+                         });
+                     });
+             } else {
+               message = "This format is not allowed , please upload file with '.png','.gif','.jpg'";
+               res.render('index.ejs',{message: message});
+             }
+      } else {
+         db.query(sql, function(err, result){
+            res.render('dashboard.ejs', {data:result});    
+         });
+      }
 
-   var sql="SELECT * FROM `users` WHERE `id`='"+userId+"'";
-   db.query(sql, function(err, results){
-      res.render('edit_profile.ejs',{data:results});
-   });
+   // var sql="SELECT * FROM `users` WHERE `id`='"+userId+"'";
+   // db.query(sql, function(err, results){
+   //    res.render('edit_profile.ejs',{data:results});
+   // });
 };
 
 //-----------------------------upload photo data in local web and to mysql ---------------------------
