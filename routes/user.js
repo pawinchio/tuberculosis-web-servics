@@ -175,7 +175,7 @@ exports.upload = function(req, res){
       var query = db.query(sql, function(err, result) {
 
          message = "Succesfully! Your account has been created.";
-         res.render('signup.ejs',{message: message});
+         res.render('index.ejs',{message: message});
       });
 
    } else {
