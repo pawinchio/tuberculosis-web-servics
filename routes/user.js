@@ -161,47 +161,27 @@ exports.editprofile=function(req,res){
 
 exports.upload = function(req, res){
    message = '';
-   
-   var userId = req.session.userId;
-   if(userId == null){
-      res.redirect("/login");
-      return;
+   if(req.method == "POST"){
+      var post  = req.body;
+      var name= post.user_name;
+      var pass= post.password;
+      var fname= post.first_name;
+      var lname= post.last_name;
+      var mob= post.mob_no;
+      var email= post.Email;
+
+      var sql = "INSERT INTO `users`(`first_name`,`last_name`,`mob_no`,`username`, `password`,`email`) VALUES ('" + fname + "','" + lname + "','" + mob + "','" + name + "','" + pass + "','" + email + "')";
+
+      var query = db.query(sql, function(err, result) {
+
+         message = "Succesfully! Your account has been created.";
+         res.render('signup.ejs',{message: message});
+      });
+
+   } else {
+      res.render('signup');
    }
-if(req.method == "POST"){
-   var post  = req.body;
-   var userId = req.session.userId;;
-   var time =Date.now();
-   var output ="-";
-
-  if (!req.files)
-         return res.status(400).send('No files were uploaded.');
-
-   var file = req.files.uploaded_image;
-   var img_name=file.name;
-
-      if(file.mimetype == "image/jpeg" ||file.mimetype == "image/png"||file.mimetype == "image/gif" ){
-                              
-           file.mv('public/images/upload_images/'+file.name, function(err) {
-                          
-              if (err)
-
-                return res.status(500).send(err);
-                var sql = "INSERT INTO `users_image`(`first_name`,`last_name`,`mob_no`,`user_name`, `password` ,`image`) VALUES ('" + fname + "','" + lname + "','" + mob + "','" + name + "','" + pass + "','" + img_name + "')";
-                var sql1 ="SELECT * FROM `Image` WHERE `user_id`='"+userId+"'";
-   
-                var query = db.query(sql, function(err, result) {
-                   db.query(sql1, function(err, result){
-                  res.render('dashboard.ejs', {data:result});    
-               });
-                   });
-               });
-       } else {
-         message = "This format is not allowed , please upload file with '.png','.gif','.jpg'";
-         res.render('upload.ejs',{message: message});
-       }
-} else {
-   res.render('upload');
-}
-
 };
+
+
 //------------------------------------------------------------------------------------------
