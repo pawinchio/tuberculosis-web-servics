@@ -1,6 +1,3 @@
-# NodeUploads
-
-An example of how to upload images locally with Node.js and Multer.
 
 ### Version
 1.0.0
@@ -22,17 +19,10 @@ To serve in the browser
 $ npm start
 ```
 
-## App Info
+###now can only upload
 
-### Author
+to go to upload
 
-Brad Traversy
-[Traversy Media](http://www.traversymedia.com)
-
-### Version
-
-1.0.0
-
-### License
-
-This project is licensed under the MIT License
+```sh
+$ http://localhost:3000/upload
+```
