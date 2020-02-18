@@ -81,6 +81,7 @@ app.post('/upload', (req, res) => {
           message = "File Uploaded!";
           res.render('index.ejs',{message: message})
           console.log('sql')
+          console.log(sql)
        });
         
           // res.render('upload', {
