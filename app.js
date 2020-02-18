@@ -2,17 +2,9 @@ const express = require('express');
 const multer = require('multer');
 const ejs = require('ejs');
 const path = require('path');
-var mysql      = require('mysql');
+const mysql = require('./mysql_config.js')
 var bodyParser=require("body-parser");
-var connection = mysql.createConnection({
-              host     : '85.10.205.173',
-              user     : 'tb_admin',
-              password : '0805025529',
-              database : 'tbofficeai'
-            });
-            connection.connect();
- 
-            global.db = connection;
+
 
 // Set The Storage Engine
 const storage = multer.diskStorage({
@@ -75,19 +67,14 @@ app.post('/upload', (req, res) => {
           msg: 'Error: No File Selected!'
         });
       } else {
-        var sql ="INSERT INTO `Image`(`time`,`input_path`,`output_path`,`resut`, `user_id`) VALUES ('" + '2020-02-1515.10.05' + "','" + 'uploads/'+ "','" + '-' + "','" + 'processing' + "','" + 2 + "')";
-        var query = db.query(sql, function(err, result) {
-
-          message = "File Uploaded!";
-          res.render('index.ejs',{message: message})
-          console.log('sql')
-          console.log(sql)
-       });
-        
-          // res.render('upload', {
-        //   msg: 'File Uploaded!',
-        //   file: `uploads/${req.file.filename}`
-        // });
+        var date = new Date();   
+        var time = date.toISOString().slice(0, 19).replace('T', ' ');
+        console.log(date)
+        console.log(time)
+        var photo_id = '5';
+        let sql ="INSERT INTO `Image`(`time`,`input_path`,`output_path`,`resut`, `user_id`) VALUES ('" + time + "','" + 'uploads/'+req.file.filename+ "','" + '-' + "','" + 'processing' + "','" + 1+ "')";
+        console.log(sql)
+        return mysql.connect(sql)
 
       }
     }
