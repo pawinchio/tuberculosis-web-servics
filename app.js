@@ -79,7 +79,8 @@ app.post('/upload', (req, res) => {
         var query = db.query(sql, function(err, result) {
 
           message = "File Uploaded!";
-          res.render('index.ejs',{message: message});
+          res.render('index.ejs',{message: message})
+          console.log('sql')
        });
         
           // res.render('upload', {
