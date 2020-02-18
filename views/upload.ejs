@@ -1,70 +1,21 @@
-
-    <%- include header %>
-
- <!-- <form class="form-horizontal" role="form" method="post"id="input"  >
-    <div class="col-sm-9">
-      <input class="form-control" type="file" name="uploaded_image" accept=""/>
-    </div>
-    <button id="btn-signup" type="submit" class="btn btn-info"><i class="icon-hand-right"></i> upload</button>
-  </form> -->
-
-  <form class="form-horizontal" role="form" method="post" action="/signup" onSubmit="return checkblank(this);">
-    <% if (message.length > 0) { %>
-                                                                                <div class="alert alert-success col-sm-12"><%= message %></div>
-                                                                    <% } %>
-    <div id="signupalert" style="display:none" class="alert alert-danger">
-        <p>Error:</p>
-        <span></span>
-    </div>
-        
-    <div class="form-group">
-        <label for="first_name" class="col-md-3 control-label">First Name</label>
-        <div class="col-md-9">
-            <input type="text" class="form-control" name="first_name" placeholder="First Name">
+<%- include header %>
+  <div class="container">
+    <h1>File Upload</h1>
+    <%= typeof msg != 'undefined' ? msg : '' %>
+    <form action="/upload" method="POST" enctype="multipart/form-data">
+      <div class="file-field input-field">
+        <div class="btn grey">
+          <span>File</span>
+          <input name="myImage" type="file">
         </div>
-    </div>
-    <div class="form-group">
-        <label for="last_name" class="col-md-3 control-label">Last Name</label>
-        <div class="col-md-9">
-            <input type="text" class="form-control" name="last_name" placeholder="Last Name">
+        <div class="file-path-wrapper">
+          <input class="file-path validate" type="text">
         </div>
-    </div>
-    <div class="form-group">
-        <label for="mob_no" class="col-md-3 control-label">Mobile Number</label>
-        <div class="col-md-9">
-            <input type="text" class="form-control" name="mob_no" placeholder="Mobile Number">
-        </div>
-    </div>
-    <div class="form-group">
-            <label for="mob_no" class="col-md-3 control-label">Email</label>
-            <div class="col-md-9">
-                <input type="text" class="form-control" name="Email" placeholder="email">
-            </div>
-        </div>
-    <div class="form-group">
-        <label for="user_name" class="col-md-3 control-label">User Name</label>
-        <div class="col-md-9">
-            <input type="text" class="form-control" name="user_name" placeholder="User Name">
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="password" class="col-md-3 control-label">Password</label>
-        <div class="col-md-9">
-            <input type="password" class="form-control" name="password" placeholder="Password">
-        </div>
-    </div>
-
-    <div class="form-group">
-        <!-- Button -->                                       
-        <div class="col-md-offset-3 col-md-9">
-            <button id="btn-signup" type="submit" class="btn btn-info"><i class="icon-hand-right"></i> &nbsp Sign Up</button>
-            
-        </div>
-    </div>
-   
-    
-    
-    
-</form>
+      </div>
+      <button type="submit" class="btn">Submit</button>
+    </form>
+    <br>
+    <img src="<%= typeof file != 'undefined' ? file : '' %>" class="responsive-img">
+  </div>
 
   <%- include footer %>
