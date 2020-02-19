@@ -4,7 +4,7 @@ const ejs = require('ejs');
 const path = require('path');
 const mysql = require('./mysql_config.js')
 var bodyParser=require("body-parser");
-
+var userId="";
 
 // Set The Storage Engine
 const storage = multer.diskStorage({
@@ -57,6 +57,7 @@ app.use(bodyParser.json());
 
 //============================reder page==============================
 app.get('/', (req, res) => res.render('login'));
+console.log(userId)
 app.get('/index', (req, res) => res.render('index'));
 app.get('/upload', (req, res) => res.render('upload'));
 app.get('/sign-up', (req, res) => res.render('sign-up'));
@@ -81,7 +82,7 @@ app.post('/upload', (req, res) => {
         let sql ="INSERT INTO `Image`(`time`,`input_path`,`output_path`,`resut`, `user_id`) VALUES ('" + time + "','" + 'uploads/'+req.file.filename+ "','" + '-' + "','" + 'processing' + "','" + 1+ "')";
         console.log(sql)
         return mysql.connect(sql)
-        res.render('index.ejs');
+        res.render('/index');
 
       }
     }
@@ -109,4 +110,30 @@ app.post('/sign-up', (req, res) => {
 });
 
 
-//========================================================================
+//================================login========================================
+app.post('/login', (req, res) => {     
+      var post  = req.body;
+      var name= post.user_name;
+      var pass= post.password;
+     
+      var sql="SELECT id, first_name, last_name, username FROM `users` WHERE `username`='"+name+"' and password = '"+pass+"'";                           
+      // db.query(sql, function(err, results){  
+        console.log(sql)
+        return mysql.connect(sql)
+        .then((resp)=>{
+          console.log(resp.rows[0].id)
+         if(resp.rows.length){
+            userId = resp.rows[0].id;
+            console.log(userId)
+            res.render('index')
+         }
+         else{
+           console.log('erroe login')
+            message = 'Wrong Credentials.';
+            res.render('login.ejs',{message: message});
+         }
+        })
+        .catch((err)=>{
+          console.log('error',err);
+      }); 
+});
