@@ -32,36 +32,53 @@
 	<div class="limiter">
 		<div class="container-login100" style="background-image: url('images/bg-01.jpg');">
 			<div class="wrap-login100">
-				<form class="login100-form validate-form" action="/login" method="post" id="loginform" role="form">
+				<form class="login100-form validate-form" action="/sign-up" method="post"  role="form">
 					<span class="login100-form-logo">
 						<i class="zmdi zmdi-accounts"></i>
 					</span>
 
 					<span class="login100-form-title p-b-34 p-t-27">
-						Log in
+						Signup
 					</span>
 
 					<div class="wrap-input100 validate-input" data-validate = "Enter username">
-						<input class="input100" type="text" name="user_name" value="" placeholder="Username">
+						<input class="input100" type="text" name="user_name" placeholder="Username">
 						<span class="focus-input100" data-placeholder="&#xf207;"></span>
 					</div>
 
 					<div class="wrap-input100 validate-input" data-validate="Enter password">
 						<input class="input100" type="password" name="password" placeholder="Password">
 						<span class="focus-input100" data-placeholder="&#xf191;"></span>
+                    </div>
+                    <div class="wrap-input100 validate-input" data-validate="Enter firstname">
+						<input class="input100" type="text" name="first_name" placeholder="firstname">
+						<span class="focus-input100" data-placeholder="&#xe8a6;"></span>
 					</div>
+                    <div class="wrap-input100 validate-input" data-validate="Enter lastname">
+						<input class="input100" type="text" name="last_name" placeholder="lastname">
+						<span class="focus-input100" data-placeholder="&#xe8a6;"></span>
+					</div>
+                    <div class="wrap-input100 validate-input" data-validate="Enter email">
+						<input class="input100" type="text" name="Email" placeholder="Email">
+						<span class="focus-input100" data-placeholder="&#xe0be;"></span>
+					</div>
+                    <div class="wrap-input100 validate-input" data-validate="Enter mobile">
+						<input class="input100" type="text" name="mob_no" placeholder="mobile-no">
+						<span class="focus-input100" data-placeholder="&#xe32c;"></span>
+					</div>
+
 
 
 					<div class="container-login100-form-btn">
-						<button class="login100-form-btn">
-							Login
+						<button class="login100-form-btn" type="submit">
+							sumit
 						</button>
 					</div>
 
-					<div class="text-center p-t-90">
+					<!-- <div class="text-center p-t-90">
                             <a href="/sign-up" style="color: antiquewhite;">
                                 Sign Up Here
-                            </a>
+                            </a> -->
 					</div>
 				</form>
 			</div>
