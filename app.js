@@ -57,9 +57,23 @@ app.use(bodyParser.json());
 
 //============================reder page==============================
 app.get('/', (req, res) => res.render('login'));
-console.log(userId)
-app.get('/index', (req, res) => res.render('index'));
-app.get('/upload', (req, res) => res.render('upload'));
+console.log(userId.length)
+app.get('/index', (req, res) => {
+  if(userId.length==0){
+    res.render('login')}
+    else{
+      res.render('index')
+    }
+  });
+  
+app.get('/upload', (req, res) => {
+  if(userId.length==0){
+    res.render('login')}
+    else{
+      res.render('upload')
+    }
+  });
+
 app.get('/sign-up', (req, res) => res.render('sign-up'));
 //===========================post upload===================================
 app.post('/upload', (req, res) => {
@@ -106,7 +120,7 @@ app.post('/sign-up', (req, res) => {
       var sql = "INSERT INTO `users`(`first_name`,`last_name`,`mob_no`,`username`, `password`,`email`) VALUES ('" + fname + "','" + lname + "','" + mob + "','" + name + "','" + pass + "','" + email + "')";
       console.log(sql)
       return mysql.connect(sql)
-      res.render('login.ejs');
+      res.render('login');
 });
 
 
@@ -130,7 +144,7 @@ app.post('/login', (req, res) => {
          else{
            console.log('erroe login')
             message = 'Wrong Credentials.';
-            res.render('login.ejs',{message: message});
+            res.render('login',{message: message});
          }
         })
         .catch((err)=>{
