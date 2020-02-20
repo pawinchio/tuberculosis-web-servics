@@ -1,5 +1,5 @@
 
-### Version
+### Version Upload on local only
 1.0.0
 
 ## Usage
@@ -12,17 +12,15 @@ Install the dependencies
 $ npm install
 ```
 
-### Serve
+### Server
 To serve in the browser
 
 ```sh
 $ npm start
 ```
-
-### now can only upload
-
-to go to upload
+### Web
+now sever on 
 
 ```sh
-$ http://localhost:3000/upload
+$ http://localhost:3000
 ```
