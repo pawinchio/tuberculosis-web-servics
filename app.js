@@ -5,6 +5,7 @@ const path = require('path');
 const mysql = require('./mysql_config.js')
 var bodyParser=require("body-parser");
 var userId="";
+var status_id ="";
 
 // Set The Storage Engine
 const storage = multer.diskStorage({
@@ -60,10 +61,18 @@ app.get('/', (req, res) => res.render('login'));
 console.log(userId.length)
 app.get('/index', (req, res) => {
   if(userId.length==0){
-    res.render('login')}
+    res.render('login')
+  }
     else{
-      res.render('index')
-    }
+      var sql2 ="SELECT * FROM `Image` WHERE `user_id`='"+userId+"'";
+      console.log(sql2)
+      return mysql.connect(sql2)
+      .then((resp)=>{
+      console.log(resp.rows)
+      status_id = resp.rows
+      res.render('index',data =status_id)
+      });
+      }
   });
   
 app.get('/upload', (req, res) => {
@@ -96,8 +105,14 @@ app.post('/upload', (req, res) => {
         let sql ="INSERT INTO `Image`(`time`,`input_path`,`output_path`,`resut`, `user_id`) VALUES ('" + time + "','" + 'uploads/'+req.file.filename+ "','" + '-' + "','" + 'processing' + "','" + 1+ "')";
         console.log(sql)
         return mysql.connect(sql)
-        res.render('/index');
-
+        var sql2 ="SELECT * FROM `Image` WHERE `user_id`='"+userId+"'";
+            console.log(sql2)
+            return mysql.connect(sql2)
+            .then((resp)=>{
+              console.log(resp.rows)
+            status_id = resp.rows
+            res.render('index',data =status_id)
+            });
       }
     }
   });
@@ -139,7 +154,14 @@ app.post('/login', (req, res) => {
          if(resp.rows.length){
             userId = resp.rows[0].id;
             console.log(userId)
-            res.render('index')
+            var sql2 ="SELECT * FROM `Image` WHERE `user_id`='"+userId+"'";
+            console.log(sql2)
+            return mysql.connect(sql2)
+            .then((resp)=>{
+              console.log(resp.rows)
+            status_id = resp.rows
+            res.render('index',data =status_id)
+            });
          }
          else{
            console.log('erroe login')
