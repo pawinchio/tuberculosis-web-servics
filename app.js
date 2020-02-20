@@ -60,7 +60,7 @@ app.use(bodyParser.json());
 app.get('/', (req, res) => res.render('login'));
 console.log(userId.length)
 app.get('/index', (req, res) => {
-  if(userId.length==0){
+  if(userId.length==0|userId=="-5"){
     res.render('login')
   }
     else{
@@ -76,12 +76,18 @@ app.get('/index', (req, res) => {
   });
   
 app.get('/upload', (req, res) => {
-  if(userId.length==0){
+  if(userId.length==0|userId=="-5"){
     res.render('login')}
     else{
       res.render('upload')
     }
   });
+
+  app.get('/logout', (req, res) => {
+        userId="-5";
+        res.render('login')
+      
+    });
 
 app.get('/sign-up', (req, res) => res.render('sign-up'));
 //===========================post upload===================================
