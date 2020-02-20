@@ -14,12 +14,11 @@
             <% if(data.length){ 
               for(var i = 0;i < data.length;i++) { %>
             <tr>
-              <th><%=(i+1)%></td>
-                <th class='table-center' style='position: sticky;top: 0;background: white;text-align:center'><%=data[i].photo_id%></th>
+                <th class='table-center' style='position: sticky;top: 0;background: white;text-align:center'><%=data[i].Photo_id%></th>
                 <th class='table-center' style='position: sticky;top: 0;background: white;text-align:center'><%=data[i].input_path%></th>
                 <th class='table-center' style='position: sticky;top: 0;background: white;text-align:center'><%=data[i].time%></th>
-                <th class='table-center' style='position: sticky;top: 0;background: white;text-align:center'><%=data[i].status%></th>
-                <th class='table-center' style='position: sticky;top: 0;background: white;text-align:center'>Download</th>
+                <th class='table-center' style='position: sticky;top: 0;background: white;text-align:center'><%=data[i].resut%></th>
+                <th class='table-center' style='position: sticky;top: 0;background: white;text-align:center'><%=data[i].output_path%></th>
             </tr>
             <% }
             }else{ %>

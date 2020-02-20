@@ -101,11 +101,11 @@ app.post('/upload', (req, res) => {
         var time = date.toISOString().slice(0, 19).replace('T', ' ');
         console.log(date)
         console.log(time)
-        var photo_id = '5';
-        let sql ="INSERT INTO `Image`(`time`,`input_path`,`output_path`,`resut`, `user_id`) VALUES ('" + time + "','" + 'uploads/'+req.file.filename+ "','" + '-' + "','" + 'processing' + "','" + 1+ "')";
+        let sql ="INSERT INTO `Image`(`time`,`input_path`,`output_path`,`resut`, `user_id`) VALUES ('" + time + "','" + 'uploads/'+req.file.filename+ "','" + '-' + "','" + 'processing' + "','" + userId+ "')";
         console.log(sql)
         return mysql.connect(sql)
-        var sql2 ="SELECT * FROM `Image` WHERE `user_id`='"+userId+"'";
+        .then((resp)=>{
+          var sql2 ="SELECT * FROM `Image` WHERE `user_id`='"+userId+"'";
             console.log(sql2)
             return mysql.connect(sql2)
             .then((resp)=>{
@@ -113,6 +113,11 @@ app.post('/upload', (req, res) => {
             status_id = resp.rows
             res.render('index',data =status_id)
             });
+      })
+      .catch((err)=>{
+          console.log('error',err);
+      });
+        
       }
     }
   });
