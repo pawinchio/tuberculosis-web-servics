@@ -1,5 +1,5 @@
 
-### Version
+### Version Upload on local only
 1.0.0
 
 ## Usage
@@ -19,10 +19,8 @@ To serve in the browser
 $ npm start
 ```
 
-### now can only upload
-
-to go to upload
+now sever on 
 
 ```sh
-$ http://localhost:3000/upload
+$ http://localhost:3000
 ```
