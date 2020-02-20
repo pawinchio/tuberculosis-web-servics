@@ -12,13 +12,13 @@ Install the dependencies
 $ npm install
 ```
 
-### Serve
+### Server
 To serve in the browser
 
 ```sh
 $ npm start
 ```
-
+### Web
 now sever on 
 
 ```sh
