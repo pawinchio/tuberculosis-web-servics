@@ -16,7 +16,7 @@ $ npm install
 To serve in the browser
 
 ```sh
-$ npm start
+$ node app.js
 ```
 ### Web
 now sever on 
@@ -24,3 +24,5 @@ now sever on
 ```sh
 $ http://localhost:3000
 ```
+
+** if need to test please sign up 
