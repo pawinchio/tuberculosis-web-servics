@@ -147,7 +147,11 @@ app.post('/sign-up', (req, res) => {
       var sql = "INSERT INTO `users`(`first_name`,`last_name`,`mob_no`,`username`, `password`,`email`) VALUES ('" + fname + "','" + lname + "','" + mob + "','" + name + "','" + pass + "','" + email + "')";
       console.log(sql)
       return mysql.connect(sql)
+      .then((resp)=>{
+        console.log(resp.rows)
+      status_id = resp.rows
       res.render('login');
+      });
 });
 
 
