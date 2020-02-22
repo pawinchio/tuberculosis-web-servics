@@ -108,7 +108,7 @@ app.post('/upload', (req, res) => {
         console.log(date)
         console.log(time)
         console.log(req)
-        let sql ="INSERT INTO `Image`(`time`,`input_path`,`output_path`,`resut`, `user_id`) VALUES ('" + time + "','" + 'uploads/input'+req.file.originalname+ "','" + '-' + "','" + 'processing' + "','" + userId+ "')";
+        let sql ="INSERT INTO `Image`(`time`,`input_path`,`output_path`,`result`, `user_id`) VALUES ('" + time + "','" + 'uploads/input'+req.file.originalname+ "','" + '-' + "','" + 'processing' + "','" + userId+ "')";
         console.log(sql)
         return mysql.connect(sql)
         .then((resp)=>{
