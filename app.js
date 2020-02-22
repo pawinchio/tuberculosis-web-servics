@@ -9,9 +9,9 @@ var status_id ="";
 
 // Set The Storage Engine
 const storage = multer.diskStorage({
-  destination: './public/uploads/',
+  destination: './public/uploads/input/',
   filename: function(req, file, cb){
-    cb(null,file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+    cb(null,file.originalname );
   }
 });
 //============================upload&check====================================================
@@ -108,7 +108,7 @@ app.post('/upload', (req, res) => {
         console.log(date)
         console.log(time)
         console.log(req)
-        let sql ="INSERT INTO `Image`(`time`,`input_path`,`output_path`,`resut`, `user_id`) VALUES ('" + time + "','" + 'uploads/'+req.file.originalname+ "','" + '-' + "','" + 'processing' + "','" + userId+ "')";
+        let sql ="INSERT INTO `Image`(`time`,`input_path`,`output_path`,`resut`, `user_id`) VALUES ('" + time + "','" + 'uploads/input'+req.file.originalname+ "','" + '-' + "','" + 'processing' + "','" + userId+ "')";
         console.log(sql)
         return mysql.connect(sql)
         .then((resp)=>{
