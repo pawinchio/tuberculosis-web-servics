@@ -15,10 +15,10 @@
               for(var i = 0;i < data.length;i++) { %>
             <tr>
                 <th class='table-center' style='position: sticky;top: 0;background: white;text-align:center'><%=data[i].photo_id%></th>
-                <th class='table-center' style='position: sticky;top: 0;background: white;text-align:center'><%=data[i].input_path%></th>
+                <th class='table-center' style='position: sticky;top: 0;background: white;text-align:center'><%=data[i].input_path.substr(14, )%></th>
                 <th class='table-center' style='position: sticky;top: 0;background: white;text-align:center'><%=data[i].time%></th>
                 <th class='table-center' style='position: sticky;top: 0;background: white;text-align:center'><%=data[i].result%></th>
-                <th class='table-center' style='position: sticky;top: 0;background: white;text-align:center'><%=data[i].output_path%></th>
+                <th class='table-center' style='position: sticky;top: 0;background: white;text-align:center'><a href="<%=data[i].output_path%>">download</a></th>
             </tr>
             <% }
             }else{ %>
